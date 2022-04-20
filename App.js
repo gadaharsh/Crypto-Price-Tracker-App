@@ -1,13 +1,25 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import ListItem from "./components/ListItem";
+import { SAMPLE_DATA } from "./assets/data/sampleData"; 
+
+
 
 export default function App() {
+  
   return (
     <View style={styles.container}>
       <View style={styles.titleWrap}>
         <Text style={styles.mainTitle}>Markets</Text>
       </View>
       <View style={styles.divider} />
+      <ListItem 
+      name = {SAMPLE_DATA[0].name}
+      symbol = {SAMPLE_DATA[0].symbol}
+      currentPrice = {SAMPLE_DATA[0].current_price}
+      priceChangePrecentage7d = {SAMPLE_DATA[0].price_change_percentage_7d_in_currency}
+      logoUrl = {SAMPLE_DATA[0].image}
+      />
     </View>
   );
 }
