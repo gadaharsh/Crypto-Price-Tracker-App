@@ -6,7 +6,8 @@ import { SAMPLE_DATA } from "./assets/data/sampleData";
 import {
   BottomSheetModal,
   BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
+} from '@gorhom/bottom-sheet';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const ListHeader = () => (
   <>
@@ -22,7 +23,14 @@ export default function App() {
   const bottomSheetModalRef = useRef(null);
   const snapPoints = useMemo(() => ["50%"], []);
 
+  const openModal = () =>{
+    bottomSheetModalRef.current?.present();
+  }
+
+  
+
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <BottomSheetModalProvider>
       <SafeAreaView style={styles.container}>
 
@@ -38,23 +46,25 @@ export default function App() {
                 item.price_change_percentage_7d_in_currency
               }
               logoUrl={item.image}
+              onPress = {()=> openModal()}
             />
           )}
           ListHeaderComponent={<ListHeader />}
         />
+        
       </SafeAreaView>
-
       <BottomSheetModal
         ref={bottomSheetModalRef}
         index={0}
         snapPoints={snapPoints}
-        
+        style={styles.bottomSheet}
       >
         <View style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
+          <Text>🎉It Works</Text>
         </View>
       </BottomSheetModal>
-    </BottomSheetModalProvider>
+      </BottomSheetModalProvider>  
+      </GestureHandlerRootView>
   );
 }
 
@@ -79,4 +89,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 16,
   },
+  bottomSheet:{
+    shadowColor: '#000',
+    shadowOffset:{
+      width: 0,
+      height: -4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  }
 });

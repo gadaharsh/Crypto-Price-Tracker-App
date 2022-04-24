@@ -7,12 +7,13 @@ const ListItem = ({
   currentPrice,
   priceChangePrecentage7d,
   logoUrl,
+  onPress
 }) => {
 
   const priceChangeColor = priceChangePrecentage7d > 0 ? '#34C759' : '#FF3B30';
   
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.itemWrap}>
         {/* Left */}
         <View style={styles.itemLeftWrap}>
